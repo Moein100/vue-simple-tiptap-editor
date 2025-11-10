@@ -1,140 +1,16 @@
 <template>
-
     <div v-if="editor" class="w-3/4 mx-auto rounded-2xl mt-4">
         <div class="sticky top-0 w-full rounded-t-2xl mx-auto z-10 bg-gray-100">
             <div class="flex flex-wrap gap-2 p-2">
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleBold().run()"
-                    :disabled="!editor.can().chain().focus().toggleBold().run()"
-                    :class="{ 'is-active': editor.isActive('bold') }">
-                    Bold
+                <!-- loop for buttons -->
+                <button v-for="button in buttons" :key="button.label"
+                    class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
+                    @click="button.action"
+                    :disabled="button.disabled ? button.disabled() : false"
+                    :class="{ 'is-active': button.active ? button.active() : false }">
+                    {{ button.label }}
                 </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleItalic().run()"
-                    :disabled="!editor.can().chain().focus().toggleItalic().run()"
-                    :class="{ 'is-active': editor.isActive('italic') }">
-                    Italic
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleStrike().run()"
-                    :disabled="!editor.can().chain().focus().toggleStrike().run()"
-                    :class="{ 'is-active': editor.isActive('strike') }">
-                    Strike
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleCode().run()"
-                    :disabled="!editor.can().chain().focus().toggleCode().run()"
-                    :class="{ 'is-active': editor.isActive('code') }">
-                    Code
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().unsetAllMarks().run()">Clear marks</button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().clearNodes().run()">Clear nodes</button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().setParagraph().run()"
-                    :class="{ 'is-active': editor.isActive('paragraph') }">
-                    Paragraph
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-                    :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }">
-                    H1
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-                    :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }">
-                    H2
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
-                    :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }">
-                    H3
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleHeading({ level: 4 }).run()"
-                    :class="{ 'is-active': editor.isActive('heading', { level: 4 }) }">
-                    H4
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleHeading({ level: 5 }).run()"
-                    :class="{ 'is-active': editor.isActive('heading', { level: 5 }) }">
-                    H5
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleHeading({ level: 6 }).run()"
-                    :class="{ 'is-active': editor.isActive('heading', { level: 6 }) }">
-                    H6
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleBulletList().run()"
-                    :class="{ 'is-active': editor.isActive('bulletList') }">
-                    Bullet list
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleOrderedList().run()"
-                    :class="{ 'is-active': editor.isActive('orderedList') }">
-                    Ordered list
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleCodeBlock().run()"
-                    :class="{ 'is-active': editor.isActive('codeBlock') }">
-                    Code block
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().toggleBlockquote().run()"
-                    :class="{ 'is-active': editor.isActive('blockquote') }">
-                    Blockquote
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().setHorizontalRule().run()">Horizontal rule</button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().setHardBreak().run()">Hard break</button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().undo().run()" :disabled="!editor.can().chain().focus().undo().run()">
-                    Undo
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().redo().run()" :disabled="!editor.can().chain().focus().redo().run()">
-                    Redo
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().setColor('#958DF1').run()"
-                    :class="{ 'is-active': editor.isActive('textStyle', { color: '#958DF1' }) }">
-                    Purple
-                </button>
-
-
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().setTextAlign('left').run()"
-                    :class="{ 'is-active': editor.isActive({ textAlign: 'left' }) }">
-                    Left
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().setTextAlign('center').run()"
-                    :class="{ 'is-active': editor.isActive({ textAlign: 'center' }) }">
-                    Center
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().setTextAlign('right').run()"
-                    :class="{ 'is-active': editor.isActive({ textAlign: 'right' }) }">
-                    Right
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().setTextAlign('justify').run()"
-                    :class="{ 'is-active': editor.isActive({ textAlign: 'justify' }) }">
-                    Justify
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().unsetTextAlign().run()">Unset text align</button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm" @click="setLink"
-                    :class="{ 'is-active': editor.isActive('link') }">Set link</button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="editor.chain().focus().unsetLink().run()" :disabled="!editor.isActive('link')">
-                    Unset link
-                </button>
-                <button class="px-2 py-1 border border-gray-800 dark:border-neutral-600 rounded-sm"
-                    @click="addImage">Set image</button>
+                <!-- end of loop for buttons -->
             </div>
         </div>
         <editor-content class="w-full" :editor="editor" />
@@ -165,8 +41,35 @@ const emit = defineEmits(['update:modelValue'])
 
 // create a lowlight instance
 const lowlight = createLowlight(all)
-
-
+                                                                        
+const buttons = [
+  { label: 'Clear', action: () => {editor.value.chain().focus().unsetAllMarks().run();editor.value.chain().focus().clearNodes().run()}},
+  { label: 'Bold', action: () => editor.value.chain().focus().toggleBold().run(), active: () => editor.value.isActive('bold') },
+  { label: 'Italic', action: () => editor.value.chain().focus().toggleItalic().run(), active: () => editor.value.isActive('italic') },
+  { label: 'Strike', action: () => editor.value.chain().focus().toggleItalic().run(), active: () => editor.value.isActive('strike') },
+  { label: 'Code', action: () => editor.value.chain().focus().toggleCode().run(), active: () => editor.value.isActive('code') },
+  { label: 'Paragraph', action: () => editor.value.chain().focus().setParagraph().run(), active: () => editor.value.isActive('paragraph') },
+  { label: 'H1', action: () => editor.value.chain().focus().toggleHeading({ level: 1 }).run(), active: () => editor.value.isActive('heading', { level: 1 }) },
+  { label: 'H2', action: () => editor.value.chain().focus().toggleHeading({ level: 2 }).run(), active: () => editor.value.isActive('heading', { level: 2 }) },
+  { label: 'H3', action: () => editor.value.chain().focus().toggleHeading({ level: 3 }).run(), active: () => editor.value.isActive('heading', { level: 3 }) },
+  { label: 'H4', action: () => editor.value.chain().focus().toggleHeading({ level: 4 }).run(), active: () => editor.value.isActive('heading', { level: 4 }) },
+  { label: 'H5', action: () => editor.value.chain().focus().toggleHeading({ level: 5 }).run(), active: () => editor.value.isActive('heading', { level: 5 }) },
+  { label: 'H6', action: () => editor.value.chain().focus().toggleHeading({ level: 6 }).run(), active: () => editor.value.isActive('heading', { level: 6 }) },
+  { label: 'Ordered List', action: () => editor.value.chain().focus().toggleOrderedList().run(), active: () => editor.value.isActive('orderedList') },
+  { label: 'Bullet List', action: () => editor.value.chain().focus().toggleBulletList().run(), active: () => editor.value.isActive('bulletList') },
+  { label: 'Code Block', action: () => editor.value.chain().focus().toggleCodeBlock().run(), active: () => editor.value.isActive('codeBlock') },
+  { label: 'Blockquote', action: () => editor.value.chain().focus().toggleBlockquote().run(), active: () => editor.value.isActive('blockquote') },
+  { label: 'Undo', action: () => editor.value.chain().focus().undo().run(), disabled: () => !editor.value.can().chain().focus().undo().run() },
+  { label: 'Redo', action: () => editor.value.chain().focus().redo().run(), disabled: () => !editor.value.can().chain().focus().redo().run() },
+  { label: 'Image', action: addImage },
+  { label: 'Link', action: setLink, active: () => editor.value.isActive('link') },
+  { label: 'Unset Link', action: () => editor.value.chain().focus().unsetLink().run(), disabled: () => !editor.value.isActive('link') },
+  { label: 'Left Align', action: () => editor.value.chain().focus().setTextAlign('left').run(), active: () => editor.value.isActive({ textAlign: 'left' }) },
+  { label: 'Center Align', action: () => editor.value.chain().focus().setTextAlign('center').run(), active: () => editor.value.isActive({ textAlign: 'center' }) },
+  { label: 'Right Align', action: () => editor.value.chain().focus().setTextAlign('right').run(), active: () => editor.value.isActive({ textAlign: 'right' }) },
+  { label: 'Justify Align', action: () => editor.value.chain().focus().setTextAlign('justify').run(), active: () => editor.value.isActive({ textAlign: 'justify' }) },
+  { label: 'Unset Align', action: () => editor.value.chain().focus().unsetTextAlign().run() },
+]
 
 const editor = useEditor({
     editorProps: {
