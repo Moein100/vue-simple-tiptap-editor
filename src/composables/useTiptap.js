@@ -8,9 +8,41 @@ import TextAlign from '@tiptap/extension-text-align'
 import Image from '@tiptap/extension-image'
 import Iframe from '../extensions/iframe.js'
 import { useEditor } from '@tiptap/vue-3'
+import axios from 'axios'
 
 export function useTiptap(props, emit) {
   const lowlight = createLowlight(all)
+
+  async function uploadFile(file) {
+    if (!props.uploadUrl) throw new Error('uploadUrl prop is not set')
+
+    const formData = new FormData()
+    formData.append('file', file)
+
+    emit('upload-start', file)
+
+    try {
+      const res = await axios.post(props.uploadUrl, formData, {
+        headers: {
+          ...props.headers,
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+
+      // Axios automatically converts JSON, so we use res.data
+      const data = res.data
+
+      const url = data.url || data.path || data.data?.url
+      if (!url) throw new Error('Upload response did not include url')
+
+      emit('upload-success', url, file)
+      return url
+    } catch (err) {
+      emit('upload-error', err, file)
+      throw err
+    }
+  }
+
   const editor = useEditor({
     editorProps: {
       attributes: {
@@ -36,40 +68,86 @@ export function useTiptap(props, emit) {
       Image,
       FileHandler.configure({
         allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
+
         onDrop: (currentEditor, files, pos) => {
           files.forEach((file) => {
-            const fileReader = new FileReader()
-
-            fileReader.readAsDataURL(file)
-            fileReader.onload = () => {
+            const placeholder = URL.createObjectURL(file)
+            if (props.uploadOnInsert && props.uploadUrl) {
+              // insert a temporary image (optional)
               currentEditor
                 .chain()
+                .focus()
                 .insertContentAt(pos, {
                   type: 'image',
-                  attrs: {
-                    src: fileReader.result,
-                  },
+                  attrs: { src: placeholder, 'data-uploading': 'true' },
                 })
+                .run()
+
+              // start upload and track it
+              uploadFile(file)
+                .then((url) => {
+                  // replace placeholder with real url
+                  currentEditor
+                    .chain()
+                    .focus()
+                    .updateAttributes('image', { src: url, 'data-uploading': null })
+                    .run()
+                })
+                .catch((err) => {
+                  console.error('upload failed', err)
+                  pendingUploads.value.delete(placeholder)
+                  // you can also show user a toast here
+                })
+            } else {
+              currentEditor
+                .chain()
                 .focus()
+                .insertContentAt(pos, {
+                  type: 'image',
+                  attrs: { src: placeholder },
+                })
                 .run()
             }
           })
         },
+
         onPaste: (currentEditor, files) => {
           files.forEach((file) => {
-            const fileReader = new FileReader()
-
-            fileReader.readAsDataURL(file)
-            fileReader.onload = () => {
+            const placeholder = URL.createObjectURL(file)
+            if (props.uploadOnInsert && props.uploadUrl) {
+              // insert a temporary image (optional)
               currentEditor
                 .chain()
-                .insertContentAt(currentEditor.state.selection.anchor, {
-                  type: 'image',
-                  attrs: {
-                    src: fileReader.result,
-                  },
-                })
                 .focus()
+                .insertContentAt(pos, {
+                  type: 'image',
+                  attrs: { src: placeholder, 'data-uploading': 'true' },
+                })
+                .run()
+
+              // start upload and track it
+              uploadFile(file)
+                .then((url) => {
+                  // replace placeholder with real url
+                  currentEditor
+                    .chain()
+                    .focus()
+                    .updateAttributes('image', { src: url, 'data-uploading': null })
+                    .run()
+                })
+                .catch((err) => {
+                  console.error('upload failed', err)
+                  pendingUploads.value.delete(placeholder)
+                  // you can also show user a toast here
+                })
+            } else {
+              currentEditor
+                .chain()
+                .focus()
+                .insertContentAt(pos, {
+                  type: 'image',
+                  attrs: { src: placeholder },
+                })
                 .run()
             }
           })

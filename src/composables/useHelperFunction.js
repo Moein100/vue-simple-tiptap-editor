@@ -4,7 +4,6 @@ export function useHelperFunction(editor) {
     const previousUrl = editor.value.getAttributes('link').href
     const url = window.prompt('URL', previousUrl)
     if (!empty) {
-
       if (url === null) {
         return
       }
@@ -28,5 +27,9 @@ export function useHelperFunction(editor) {
         .run()
     }
   }
-  return { setLink }
+
+  function test() {
+    console.log('test')
+  }
+  return { setLink, test }
 }

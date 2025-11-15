@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { shallowRef } from 'vue'
 export function useImageUpload(editor, props, emit) {
   const uploadedImages = shallowRef(new Set())
@@ -10,25 +11,22 @@ export function useImageUpload(editor, props, emit) {
     const formData = new FormData()
     formData.append('file', file)
 
-    // emit start
     emit('upload-start', file)
 
     try {
-      const res = await fetch(props.uploadUrl, {
-        method: 'POST',
-        headers: props.headers,
-        body: formData,
+      const res = await axios.post(props.uploadUrl, formData, {
+        headers: {
+          ...props.headers,
+          'Content-Type': 'multipart/form-data',
+        },
       })
 
-      if (!res.ok) {
-        const text = await res.text()
-        throw new Error(text || 'Upload failed')
-      }
+      // Axios automatically converts JSON, so we use res.data
+      const data = res.data
 
-      const data = await res.json()
-      // expecting the response to have a 'url' field
       const url = data.url || data.path || data.data?.url
       if (!url) throw new Error('Upload response did not include url')
+
       emit('upload-success', url, file)
       return url
     } catch (err) {
@@ -86,23 +84,30 @@ export function useImageUpload(editor, props, emit) {
             continue
           }
         }
+        const pos = editor.value.state.selection.anchor
 
-        // Default: insert as base64 (existing behavior)
-        const fileReader = new FileReader()
-        fileReader.readAsDataURL(file)
-        fileReader.onload = () => {
-          editor.value
-            .chain()
-            .focus()
-            .insertContentAt(editor.value.state.selection.anchor, {
-              type: 'image',
-              attrs: {
-                src: fileReader.result,
-              },
-            })
-            .focus()
-            .run()
-        }
+        // Insert placeholder
+        editor.value.chain().focus().insertContentAt(pos, 'Loading...').run()
+
+        // Instead of base64, create an object URL (MUCH faster)
+        const url = URL.createObjectURL(file)
+
+        // Insert image instantly
+        editor.value
+          .chain()
+          .focus()
+          .insertContentAt(editor.value.state.selection.anchor, {
+            type: 'image',
+            attrs: { src: url },
+          })
+          .run()
+
+        // Remove loading text
+        editor.value
+          .chain()
+          .focus()
+          .deleteRange({ from: pos, to: pos + 10 })
+          .run()
       }
     }
 
