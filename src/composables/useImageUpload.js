@@ -60,39 +60,31 @@ export function useImageUpload(editor, props, emit) {
               })
               .run()
 
-            // start upload and track it
             const uploadPromise = uploadFile(file)
               .then((url) => {
-                // replace placeholder with real url
                 editor.value
                   .chain()
                   .focus()
                   .updateAttributes('image', { src: url, 'data-uploading': null })
                   .run()
-                // mark as uploaded
                 uploadedImages.value.add(url)
                 pendingUploads.value.delete(placeholder)
               })
               .catch((err) => {
                 console.error('upload failed', err)
                 pendingUploads.value.delete(placeholder)
-                // you can also show user a toast here
               })
 
             pendingUploads.value.set(placeholder, uploadPromise)
-            // don't await here so multiple uploads can run concurrently
             continue
           }
         }
         const pos = editor.value.state.selection.anchor
 
-        // Insert placeholder
         editor.value.chain().focus().insertContentAt(pos, 'Loading...').run()
 
-        // Instead of base64, create an object URL (MUCH faster)
         const url = URL.createObjectURL(file)
 
-        // Insert image instantly
         editor.value
           .chain()
           .focus()
@@ -102,7 +94,6 @@ export function useImageUpload(editor, props, emit) {
           })
           .run()
 
-        // Remove loading text
         editor.value
           .chain()
           .focus()

@@ -29,8 +29,7 @@ export function useTiptap(props, emit) {
         },
       })
 
-      // Axios automatically converts JSON, so we use res.data
-      const data = res.data
+      const data = res.data // data will be converted automatically by axios
 
       const url = data.url || data.path || data.data?.url
       if (!url) throw new Error('Upload response did not include url')
@@ -73,7 +72,6 @@ export function useTiptap(props, emit) {
           files.forEach((file) => {
             const placeholder = URL.createObjectURL(file)
             if (props.uploadOnInsert && props.uploadUrl) {
-              // insert a temporary image (optional)
               currentEditor
                 .chain()
                 .focus()
@@ -83,10 +81,8 @@ export function useTiptap(props, emit) {
                 })
                 .run()
 
-              // start upload and track it
               uploadFile(file)
                 .then((url) => {
-                  // replace placeholder with real url
                   currentEditor
                     .chain()
                     .focus()
@@ -96,7 +92,6 @@ export function useTiptap(props, emit) {
                 .catch((err) => {
                   console.error('upload failed', err)
                   pendingUploads.value.delete(placeholder)
-                  // you can also show user a toast here
                 })
             } else {
               currentEditor
@@ -115,7 +110,6 @@ export function useTiptap(props, emit) {
           files.forEach((file) => {
             const placeholder = URL.createObjectURL(file)
             if (props.uploadOnInsert && props.uploadUrl) {
-              // insert a temporary image (optional)
               currentEditor
                 .chain()
                 .focus()
@@ -125,10 +119,8 @@ export function useTiptap(props, emit) {
                 })
                 .run()
 
-              // start upload and track it
               uploadFile(file)
                 .then((url) => {
-                  // replace placeholder with real url
                   currentEditor
                     .chain()
                     .focus()
@@ -138,7 +130,6 @@ export function useTiptap(props, emit) {
                 .catch((err) => {
                   console.error('upload failed', err)
                   pendingUploads.value.delete(placeholder)
-                  // you can also show user a toast here
                 })
             } else {
               currentEditor
