@@ -65,5 +65,22 @@
     "@tailwindcss/vite": "^4.1.17",
     "tailwindcss": "^4.1.17"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vue3",
+    "tiptap",
+    "tiptap-editor",
+    "wysiwyg",
+    "rich-text-editor",
+    "vue-editor",
+    "vue-tiptap",
+    "text-editor",
+    "prosemirror",
+    "tailwind",
+    "tailwindcss",
+    "lucide-icons",
+    "minimal-editor",
+    "lightweight"
+  ]
 }
