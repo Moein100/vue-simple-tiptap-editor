@@ -1,6 +1,6 @@
 # **vue-simple-tiptap-editor**
 
-A lightweight, customizable Vue 3 wrapper around **Tiptap**, designed for simplicity and flexibility. 
+A lightweight Vue 3 wrapper around **Tiptap**, designed for simplicity and flexibility. 
 ---
 
 ## **Features**
@@ -70,7 +70,7 @@ This one avoids all that.
 
 You get:
 
-- time! (out most valuable thing)
+- time! (our most valuable thing)
 
 ---
 
