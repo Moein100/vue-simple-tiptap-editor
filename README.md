@@ -1,44 +1,84 @@
-# blog-editor
+# **vue-simple-tiptap-editor**
 
-This template should help get you started developing with Vue 3 in Vite.
+A lightweight, customizable Vue 3 wrapper around **Tiptap**, designed for simplicity and flexibility. 
+---
 
-## Recommended IDE Setup
+## **Features**
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- ⚡ **Lightweight** — Zero bundled Tailwind, Vue, or Tiptap.   
+- 🧱 **Install as a Vue plugin** or use components directly.  
+- 🖋 **Clean UI** built with Tailwind utility classes.  
+- 📦 **Tree-shakable** and optimized for Vite.
 
-## Recommended Browser Setup
+---
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## **Installation**
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```bash
+npm install vue-simple-tiptap-editor
 ```
 
-### Compile and Hot-Reload for Development
+This package expects **Vue 3**, **Tiptap**, and **Tailwind CSS** to already exist in your project.
 
-```sh
-npm run dev
+---
+
+## **Usage**
+
+### **1. Import the plugin**
+
+```diff
+// main.js
+import { createApp } from 'vue'
+import App from './App.vue'
+
++ import Editor from 'vue-simple-tiptap-editor'
++ import 'vue-simple-tiptap-editor/dist/style.css'
+
+const app = createApp(App)
++ app.use(Editor)
+app.mount('#app')
 ```
 
-### Compile and Minify for Production
+### **2. Use the Editor component**
 
-```sh
-npm run build
+```diff
+<template>
++  <Editor />
+</template>
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+---
 
-```sh
-npm run lint
-```
+## **Props**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `v-model` | `String` | `''` | you can access the content via this one |
+| `uploadOnInsert` | `Boolean` | `false` | Means you can upload your images to the server when inserting the image into editor also you have to provide the server URL |
+| `uploadUrl` | `String` | `null` | The server URL that you want your photos to get uploaded on |
+| `headers` | `Object` | `{}` | The headers that you wanna send to server along side the files |
+
+---
+
+## **Why This Package?**
+
+Because most Tiptap UI packages:
+
+- no need for configuration boring stuff
+
+This one avoids all that.
+
+You get:
+
+- time! (out most valuable thing)
+
+---
+
+## **License**
+
+MIT — feel free to use it in commercial and personal projects.
+
+---
+
+If you want anything just tell me:
+moeinkiani.80@gmail.com
