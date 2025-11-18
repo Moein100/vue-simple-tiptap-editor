@@ -10,6 +10,12 @@ A lightweight Vue 3 wrapper around **Tiptap**, designed for simplicity and flexi
 - 🖋 **Clean UI** built with Tailwind utility classes.  
 - 📦 **Tree-shakable** and optimized for Vite.
 
+By the way I create this package to solve my own problem cause in my projects I keep facing the scenario that i needed and editor that contains `Image` handling, `Iframe` handling (mostly from youtube), `Link` handling, `Alignment` stuff Handling, `Code Block` handling, and some other commen things but configure it every time was frustrating. so I start building this package.
+
+It has really simple UI (ofcourse It's responsive)
+i used tailwind css to style this editor but in this current version you cant customize the UI so maybe you can use it in your admin panel or even provide this editor for your user (promise the UI is not that bad) but if you liked this already i can add the feature (Custome UI) to that. just let me know.
+
+
 ---
 
 ## **Installation**
