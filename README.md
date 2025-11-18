@@ -19,7 +19,7 @@ i used tailwind css to style this editor but in this current version you cant cu
 
 Oh by the way it should look like this if you cant see it this way then may be your global css overrides the editor:
 
-![vue-simple-tiptap-editor demo](https://github.com/Moein100/vue-tiptap-simple-editor/blob/make-lib/raw/Screenshot%201404-08-27%20at%2012.59.57.png)
+![vue-simple-tiptap-editor demo](https://github.com/Moein100/blog-editor-docs/blob/main/raw/Screenshot%201404-08-27%20at%2012.59.57.png)
 
 Quik fix:
 
