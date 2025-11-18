@@ -21,23 +21,7 @@ Oh by the way it should look like this if you cant see it this way then may be y
 
 ![vue-simple-tiptap-editor demo](https://github.com/Moein100/blog-editor-docs/blob/main/raw/Screenshot%201404-08-27%20at%2012.59.57.png)
 
-Quik fix:
 
-```vue
-<div class="isolated-editor">
-  <Editor />
-</div>
-
-<style scoped>
-.isolated-editor :deep(*) {
-  all: revert;
-}
-</style>
-```
-
-or consider to change your global css 😕😂.
-
-But One line of `all: revert` fixes everything.
 
 
 ## **Installation**

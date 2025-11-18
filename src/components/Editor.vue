@@ -1,9 +1,9 @@
 <template>
   <div
     v-show="editor"
-    class="w-full sm:w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto rounded-2xl mt-4 border border-gray-300"
+    class="w-full bg-white! sm:w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto rounded-2xl mt-4 border border-gray-300"
   >
-    <div class="sticky top-0 overflow-hidden w-full rounded-t-2xl mx-auto z-10 bg-gray-100">
+    <div class="sticky top-0 overflow-hidden w-full rounded-t-2xl mx-auto z-10 bg-gray-100!">
       <div
         class="flex md:flex-wrap flex-nowrap overflow-x-auto gap-2 p-2 scrollbar-hide masked-overflow"
       >
