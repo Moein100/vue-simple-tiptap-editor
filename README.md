@@ -15,8 +15,30 @@ By the way I create this package to solve my own problem cause in my projects I 
 It has really simple UI (ofcourse It's responsive)
 i used tailwind css to style this editor but in this current version you cant customize the UI so maybe you can use it in your admin panel or even provide this editor for your user (promise the UI is not that bad) but if you liked this already i can add the feature (Custome UI) to that. just let me know.
 
+### Looks broken or weird?
+
+Oh by the way it should look like this if you cant see it this way then may be your global css overrides the editor:
+
 ![vue-simple-tiptap-editor demo](https://github.com/Moein100/vue-tiptap-simple-editor/blob/make-lib/raw/Screenshot%201404-08-27%20at%2012.59.57.png)
----
+
+Quik fix:
+
+```vue
+<div class="isolated-editor">
+  <Editor />
+</div>
+
+<style scoped>
+.isolated-editor :deep(*) {
+  all: revert;
+}
+</style>
+```
+
+or consider to change your global css 😕😂.
+
+But One line of `all: revert` fixes everything.
+
 
 ## **Installation**
 
@@ -86,5 +108,10 @@ MIT — feel free to use it in commercial and personal projects.
 
 ---
 
-If you want anything just tell me:
-moeinkiani.80@gmail.com
+### Customization
+
+Want custom toolbar buttons, dark mode, or different styling?
+Open an issue or email me — I’ll add it if you want it.
+
+<moeinkiani.80@gmail.com>
+
