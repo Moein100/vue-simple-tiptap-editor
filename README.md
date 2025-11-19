@@ -72,6 +72,25 @@ app.mount('#app')
 
 ---
 
+## Upload on Insert:
+```js
+    <Editor
+      v-model="content"
+      :upload-on-insert="true"
+      :upload-url="'http://example.test/api/editor/upload'"
+      :headers="{
+        Accept: 'application/json',
+        // authentication stuff 
+      }"
+      />
+```
+So when you upload an Image in the editor (using Drag/Drop Copy/Paste or using Image Button in Editor) the editor automatically upload the images to that endpoint that you provided (`upload-url=...`)
+keep in mind that End Point must have a `file` field. so you only have to send the Image with the `file` field in `POST` request. In response it has to return a json with a single key named `url` and the value filled with the Saved Image address. so the response will be somthing like this:
+```json
+{
+    "url": "https://example.test/path/to/Image"
+}
+```
 ## **Why This Package?**
 
 Because most Tiptap UI packages:
