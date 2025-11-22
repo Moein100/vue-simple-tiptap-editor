@@ -91,6 +91,15 @@ keep in mind that End Point must have a `file` field. so you only have to send t
     "url": "https://example.test/path/to/Image"
 }
 ```
+
+### 🔧 Code Highlighting (Optional)
+
+If you want syntax highlighting inside code blocks with zero configuration, add this stylesheet to your page’s `<head>`:
+
+```html
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/styles/github-dark.min.css">
+```
+
 ## **Why This Package?**
 
 Because most Tiptap UI packages:
@@ -117,4 +126,11 @@ Want custom toolbar buttons, dark mode, or different styling?
 Open an issue or email me — I’ll add it if you want it.
 
 <moeinkiani.80@gmail.com>
+
+
+
+
+
+
+
 
