@@ -2,5 +2,5 @@
 @plugin "@tailwindcss/typography";
 
 .is-active {
-  @apply bg-gray-600 dark:bg-gray-600 text-neutral-700 dark:text-neutral-200;
+  @apply bg-gray-600 text-neutral-200;
 }
