@@ -1,7 +1,7 @@
 <template>
   <div
     v-show="editor"
-    class="w-full bg-white! sm:w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto rounded-2xl mt-4 border border-gray-300"
+    :class="`bg-white! rounded-2xl mt-4 border border-gray-300 ${props.classes}`"
   >
     <div class="sticky top-0 overflow-hidden w-full rounded-t-2xl mx-auto z-10 bg-gray-100!">
       <div
@@ -42,6 +42,7 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  classes: { type: String, default: 'w-full sm:w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto' },
   uploadOnInsert: { type: Boolean, default: false },
   uploadUrl: { type: String, default: null },
   headers: { type: Object, default: () => ({}) },

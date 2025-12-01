@@ -69,6 +69,7 @@ app.mount('#app')
 | `uploadOnInsert` | `Boolean` | `false` | Means you can upload your images to the server when inserting the image into editor also you have to provide the server URL |
 | `uploadUrl` | `String` | `null` | The server URL that you want your photos to get uploaded on |
 | `headers` | `Object` | `{}` | The headers that you wanna send to server along side the files |
+| `classes` | `String` | `"w-full sm:w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto"` | you can define your own class (meant for sizing stuff as you can see in its default value) |
 
 ---
 
