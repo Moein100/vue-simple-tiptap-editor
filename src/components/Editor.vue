@@ -9,6 +9,7 @@
       >
         <button
           v-for="button in buttons"
+          type="button"
           :key="button.label"
           :title="button.label"
           :aria-label="button.label"
