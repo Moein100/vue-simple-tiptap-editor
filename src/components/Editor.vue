@@ -13,7 +13,9 @@
           :key="button.label"
           :title="button.label"
           :aria-label="button.label"
-          class="px-1.5 sm:px-3 py-1 text-xs text-gray-900 sm:text-sm border border-gray-800 dark:border-neutral-600 rounded-sm whitespace-nowrap"
+          class="px-1.5 sm:px-3 py-1 text-xs text-gray-900 sm:text-sm border
+           border-gray-800 dark:border-neutral-600 rounded-sm whitespace-nowrap
+           transition delay-150 duration-100 ease-in-out hover:-translate-y-1 hover:scale-102"
           @click="button.action"
           :disabled="button.disabled ? button.disabled() : false"
           :class="{ 'is-active': button.active ? button.active() : false }"
