@@ -1,4 +1,4 @@
-import { all, createLowlight } from 'lowlight'
+import { common, createLowlight } from 'lowlight'
 import { ListItem } from '@tiptap/extension-list'
 import { Color, TextStyle } from '@tiptap/extension-text-style'
 import StarterKit from '@tiptap/starter-kit'
@@ -11,7 +11,7 @@ import { useEditor } from '@tiptap/vue-3'
 import axios from 'axios'
 
 export function useTiptap(props, emit) {
-  const lowlight = createLowlight(all)
+  const lowlight = createLowlight(common)
 
   async function uploadFile(file) {
     if (!props.uploadUrl) throw new Error('uploadUrl prop is not set')
@@ -63,6 +63,7 @@ export function useTiptap(props, emit) {
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
       CodeBlockLowlight.configure({
         lowlight,
+        enableTabIndentation: true,
       }),
       Image,
       FileHandler.configure({
