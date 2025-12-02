@@ -15,14 +15,12 @@ By the way I create this package to solve my own problem cause in my projects I 
 It has really simple UI (ofcourse It's responsive)
 i used tailwind css to style this editor but in this current version you cant customize the UI so maybe you can use it in your admin panel or even provide this editor for your user (promise the UI is not that bad) but if you liked this already i can add the feature (Custome UI) to that. just let me know.
 
-### Looks broken or weird?
-
-Oh by the way it should look like this if you cant see it this way then may be your global css overrides the editor:
+### How it should looks
 
 ![vue-simple-tiptap-editor demo](https://github.com/Moein100/blog-editor-docs/blob/main/raw/Screenshot%201404-08-27%20at%2012.59.57.png)
 
 
-
+Note: If you use this editor inside a form, the rendered content may look different when you display it elsewhere. To ensure the formatting matches what you see inside the editor, install and enable [` @tailwindcss/typography`](https://github.com/tailwindlabs/tailwindcss-typography).
 
 ## **Installation**
 
