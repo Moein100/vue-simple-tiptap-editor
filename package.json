@@ -13,7 +13,7 @@
     },
     "./dist/style.css": "./dist/vue-simple-tiptap-editor.css"
   },
-  "version": "0.0.20",
+  "version": "0.0.21",
   "private": false,
   "type": "module",
   "engines": {
