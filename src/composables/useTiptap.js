@@ -150,7 +150,7 @@ export function useTiptap(props, emit) {
     content: props.modelValue,
     onUpdate: ({ editor }) => {
       const newContent = editor.getHTML()
-      if (newContent !== props.modelValue) emit('update:modelValue', newContent)
+      if (newContent !== props.modelValue) emit('update:modelValue', editor.getHTML())
     },
   })
   return editor
