@@ -135,6 +135,11 @@
 .iframe-wrapper {
   position: relative;
   margin: 0 auto;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 8px;
+  display: block;
 
   &.ProseMirror-selectednode {
     outline: 3px solid #68cef8;

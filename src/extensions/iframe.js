@@ -20,12 +20,6 @@ export default Node.create({
       src: {
         default: null,
       },
-      width: {
-        default: '560',
-      },
-      height: {
-        default: '315',
-      },
       frameborder: {
         default: 0,
       },
