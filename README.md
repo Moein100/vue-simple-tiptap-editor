@@ -40,14 +40,26 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 + import Editor from 'vue-simple-tiptap-editor'
-+ import 'vue-simple-tiptap-editor/dist/style.css'
+
 
 const app = createApp(App)
 + app.use(Editor)
 app.mount('#app')
 ```
 
-### **2. Use the Editor component**
+### **2. Add the styles to your css**
+This will ensure that styles stay the same as development when you are trying to build it using `npm run build`.
+
+**Please ensure that the path to node modules in the follwing code is correct in your project.**
+```diff
+//css/app.css
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
++ @source '../../node_modules/vue-simple-tiptap-editor';
+```
+
+### **3. Use the Editor component**
 
 ```diff
 <template>
