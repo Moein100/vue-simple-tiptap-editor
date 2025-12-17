@@ -42,7 +42,11 @@ export default Node.create({
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['iframe', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)]
+    return [
+      'div',
+      { class: 'iframe-wrapper' },
+      ['iframe', mergeAttributes(HTMLAttributes)],
+    ]
   },
 
   addCommands() {
