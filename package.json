@@ -1,5 +1,13 @@
 {
   "name": "vue-simple-tiptap-editor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Moein100/vue-simple-tiptap-editor"
+  },
+  "homepage": "https://github.com/Moein100/vue-simple-tiptap-editor",
+  "bugs": {
+    "url": "https://github.com/Moein100/vue-simple-tiptap-editor/issues"
+  },
   "files": [
     "dist"
   ],
