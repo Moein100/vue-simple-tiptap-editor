@@ -62,6 +62,10 @@ This will ensure that styles stay the same as development when you are trying to
 ### **3. Use the Editor component**
 
 ```diff
+<script setup>
++ import 'vue-simple-tiptap-editor/dist/style.css'
+</script>
+
 <template>
 +  <Editor />
 </template>
