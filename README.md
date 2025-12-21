@@ -38,7 +38,7 @@ npm install vue-simple-tiptap-editor
 // main.js
 import { createApp } from 'vue'
 import App from './App.vue'
-
++ import 'vue-simple-tiptap-editor/dist/style.css'
 + import Editor from 'vue-simple-tiptap-editor'
 
 
@@ -46,7 +46,7 @@ const app = createApp(App)
 + app.use(Editor)
 app.mount('#app')
 ```
-
+you can import the styles in your main.js file or you can just import it in the component that you need to use the editor (if so, you have to import it inside `script` tag ).
 ### **2. Add the styles to your css**
 This will ensure that styles stay the same as development when you are trying to build it using `npm run build`.
 
@@ -62,10 +62,6 @@ This will ensure that styles stay the same as development when you are trying to
 ### **3. Use the Editor component**
 
 ```diff
-<script setup>
-+ import 'vue-simple-tiptap-editor/dist/style.css'
-</script>
-
 <template>
 +  <Editor />
 </template>
