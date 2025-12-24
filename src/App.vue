@@ -30,7 +30,7 @@ const content = ref(
           Wow, that’s amazing. Good work, boy! 👏
           <br />
           — Mom
-        </blockquote>`
+        </blockquote>`,
 )
 </script>
 

@@ -9,6 +9,7 @@ import Image from '@tiptap/extension-image'
 import Iframe from '../extensions/iframe.js'
 import { useEditor } from '@tiptap/vue-3'
 import axios from 'axios'
+import Link from '@tiptap/extension-link'
 
 export function useTiptap(props, emit) {
   const lowlight = createLowlight(common)
@@ -59,6 +60,11 @@ export function useTiptap(props, emit) {
       TextStyle.configure({ types: [ListItem.name] }),
       StarterKit.configure({
         codeBlock: false,
+      }),
+      Link.configure({
+        HTMLAttributes: {
+          rel: 'noopener',
+        },
       }),
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
       CodeBlockLowlight.configure({

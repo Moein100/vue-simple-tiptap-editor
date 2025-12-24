@@ -1,7 +1,7 @@
-import Editor from "./components/Editor.vue";
+import Editor from './components/Editor.vue'
 import './assets/main.css'
 export default {
-    install: (app, options) => {
-        app.component("Editor", Editor);
-    }
+  install: (app, options) => {
+    app.component('Editor', Editor)
+  },
 }
