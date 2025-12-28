@@ -37,27 +37,30 @@
     "format": "prettier --write src/"
   },
   "peerDependencies": {
-    "vue": "^3.5.0",
     "@tiptap/core": "^3.10.4",
+    "@tiptap/extension-code-block-lowlight": "^3.10.4",
+    "@tiptap/extension-file-handler": "^3.10.4",
+    "@tiptap/extension-image": "^3.10.4",
+    "@tiptap/extension-link": "^3.10.4",
+    "@tiptap/extension-text-align": "^3.10.4",
+    "@tiptap/extension-text-style": "^3.10.4",
+    "@tiptap/extension-underline": "^3.10.4",
+    "@tiptap/extension-heading": "^3.14.0",
     "@tiptap/pm": "^3.10.3",
     "@tiptap/starter-kit": "^3.10.4",
     "@tiptap/vue-3": "^3.10.4",
-    "@tiptap/extension-link": "^3.10.4",
-    "@tiptap/extension-image": "^3.10.4",
-    "@tiptap/extension-underline": "^3.10.4",
-    "@tiptap/extension-text-style": "^3.10.4",
-    "@tiptap/extension-text-align": "^3.10.4",
-    "@tiptap/extension-code-block-lowlight": "^3.10.4",
-    "@tiptap/extension-file-handler": "^3.10.4",
-    "lucide-vue-next": "^0.553.0",
     "axios": "^1.13.2",
-    "lowlight": "^3.3.0"
+    "lowlight": "^3.3.0",
+    "lucide-vue-next": "^0.553.0",
+    "vue": "^3.5.0"
   },
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "@eslint/js": "^9.37.0",
     "@prettier/plugin-oxc": "^0.0.4",
     "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.1.17",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/eslint-config-prettier": "^10.2.0",
     "eslint": "^9.37.0",
@@ -68,10 +71,9 @@
     "oxlint": "~1.23.0",
     "prettier": "3.6.2",
     "sass-embedded": "^1.93.3",
+    "tailwindcss": "^4.1.17",
     "vite": "^7.1.11",
-    "vite-plugin-vue-devtools": "^8.0.3",
-    "@tailwindcss/vite": "^4.1.17",
-    "tailwindcss": "^4.1.17"
+    "vite-plugin-vue-devtools": "^8.0.3"
   },
   "license": "MIT",
   "keywords": [

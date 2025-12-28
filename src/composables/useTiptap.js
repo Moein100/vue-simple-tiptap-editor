@@ -8,11 +8,13 @@ import TextAlign from '@tiptap/extension-text-align'
 import Image from '@tiptap/extension-image'
 import Iframe from '../extensions/iframe.js'
 import { useEditor } from '@tiptap/vue-3'
+import { useHeading } from './useHeading.js'
 import axios from 'axios'
 import Link from '@tiptap/extension-link'
 
 export function useTiptap(props, emit) {
   const lowlight = createLowlight(common)
+  const Heading = useHeading()
 
   async function uploadFile(file) {
     if (!props.uploadUrl) throw new Error('uploadUrl prop is not set')
@@ -60,6 +62,8 @@ export function useTiptap(props, emit) {
       TextStyle.configure({ types: [ListItem.name] }),
       StarterKit.configure({
         codeBlock: false,
+        link: false,
+        heading: false,
       }),
       Link.configure({
         HTMLAttributes: {
@@ -71,6 +75,7 @@ export function useTiptap(props, emit) {
         lowlight,
         enableTabIndentation: true,
       }),
+      Heading,
       Image,
       FileHandler.configure({
         allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],

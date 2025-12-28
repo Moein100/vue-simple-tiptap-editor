@@ -23,6 +23,7 @@ export default defineConfig({
         '@tiptap/vue-3',
         '@tiptap/extension-link',
         '@tiptap/extension-image',
+        '@tiptap/extension-heading',
         '@tiptap/extension-underline',
         '@tiptap/extension-text-style',
         '@tiptap/extension-text-align',

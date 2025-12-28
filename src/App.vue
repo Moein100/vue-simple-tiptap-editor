@@ -50,6 +50,4 @@ const content = ref(
       <pre class="w-full text-pretty">{{ content }}</pre>
     </div>
   </div>
-
-  <RouterView />
 </template>
