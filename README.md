@@ -17,7 +17,7 @@ i used Vue3, Tiptap and tailwind css to style this editor but in this current ve
 
 ### How it should looks
 
-![vue-simple-tiptap-editor demo](https://github.com/Moein100/blog-editor-docs/blob/main/raw/Screenshot%201404-08-27%20at%2012.59.57.png)
+![vue-simple-tiptap-editor demo](https://github.com/Moein100/blog-editor-docs/blob/main/raw/Screenshot%201404-10-08%20at%2016.06.55.png)
 
 
 Note: If you use this editor inside a form, the rendered content may look different when you display it elsewhere. To ensure the formatting matches what you see inside the editor, install and enable [` @tailwindcss/typography`](https://github.com/tailwindlabs/tailwindcss-typography).
